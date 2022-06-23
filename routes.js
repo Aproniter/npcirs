@@ -19,7 +19,7 @@ const router = app => {
         });
     });
     app.get('/test', (request, response) => {
-        db.one("SELECT * FROM pg_extension", [true])
+        db.any("SELECT * FROM test", [true])
             .then(data => {
                 console.log("DATA:", data);
                 response.send({

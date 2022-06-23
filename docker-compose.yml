@@ -1,0 +1,22 @@
+version: '3.8'
+
+services: 
+  db2:    
+    image: postgres:13.0-alpine    
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    
+      
+  web:
+    build: .
+    restart: always
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db2
+    env_file:
+      - ./.env
